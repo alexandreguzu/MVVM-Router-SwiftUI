@@ -19,11 +19,14 @@ actor InMemoryToDoRepository: ToDoRepository {
         toDoItems.append(toDoItem)
     }
 
-    func deleteItem(at index: Int) async {
+    func delete(toDoItem: ToDoItem) async throws {
+        guard let index = toDoItems.firstIndex(of: toDoItem) else {
+            throw ToDoRepositoryError.itemNotFound
+        }
         toDoItems.remove(at: index)
     }
 
-    func updateCompleted(toDoItem: ToDoItem, completed: Bool) async throws {
+    func update(toDoItem: ToDoItem, completed: Bool) async throws {
         guard let index = toDoItems.firstIndex(where: { $0 == toDoItem }) else {
             throw ToDoRepositoryError.itemNotFound
         }

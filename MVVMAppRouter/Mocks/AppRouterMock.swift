@@ -9,5 +9,9 @@ import Foundation
 
 class AppRouterMock: AppRouter {
     func start() {}
-    func showNewToDoForm() {}
+    func showNewToDoForm(
+        onNewToDo: @escaping (ToDoItem) -> Void,
+        onCancel: @escaping () -> Void
+    ) {}
+    func dismiss() {}
 }

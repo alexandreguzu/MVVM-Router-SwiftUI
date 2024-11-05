@@ -10,8 +10,8 @@ import Foundation
 protocol ToDoRepository {
     func fetchAll() async -> [ToDoItem]
     func add(toDoItem: ToDoItem) async
-    func deleteItem(at index: Int) async
-    func updateCompleted(toDoItem: ToDoItem, completed: Bool) async throws
+    func delete(toDoItem: ToDoItem) async throws
+    func update(toDoItem: ToDoItem, completed: Bool) async throws
 }
 
 enum ToDoRepositoryError: Error {

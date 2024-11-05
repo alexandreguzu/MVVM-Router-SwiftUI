@@ -7,8 +7,7 @@
 
 import Foundation
 
-@Observable
-class ToDoListViewModel {
+class ToDoListViewModel: ObservableObject {
 
     enum UIState: Equatable {
         case loading
@@ -21,12 +20,10 @@ class ToDoListViewModel {
         }
     }
 
-    private(set) var state: UIState = .loading
+    @Published private(set) var state: UIState = .loading
 
-    @ObservationIgnored
     private let repository: ToDoRepository
 
-    @ObservationIgnored
     private let appRouter: AppRouter
 
     init(appRouter: AppRouter, toDoRepository: ToDoRepository) {
@@ -34,40 +31,46 @@ class ToDoListViewModel {
         self.repository = toDoRepository
     }
 
-    @MainActor
     func fetchAllItems() async {
         let toDoItems = await repository.fetchAll()
 
-        if toDoItems.isEmpty {
-            state = .empty
-        } else {
-            state = .filled(UIState.FilledData(toDoItems: toDoItems, error: nil))
+        Task { @MainActor in
+            if toDoItems.isEmpty {
+                state = .empty
+            } else {
+                state = .filled(UIState.FilledData(toDoItems: toDoItems, error: nil))
+            }
         }
     }
 
-    @MainActor
-    func addItem(name: String) async {
-        if name.isEmpty { return }
-
-        await repository.add(
-            toDoItem: ToDoItem(
-                name: name,
-                completed: false
-            )
-        )
+    func addItem(item: ToDoItem) async {
+        await repository.add(toDoItem: item)
 
         await fetchAllItems()
     }
 
-    @MainActor
     func remove(atOffsets indexSet: IndexSet) async {
+        guard case .filled(let data) = state else { return }
         for index in indexSet {
-            await repository.deleteItem(at: index)
+            await repository.delete(toDoItem: data.toDoItems[index])
         }
         await fetchAllItems()
     }
 
     func showNewToDoForm() {
-        appRouter.showNewToDoForm()
+        appRouter.showNewToDoForm(onNewToDo: { [weak self] toDoItem in
+            guard let self else { return }
+
+            Task {
+                await self.addItem(item: toDoItem)
+                self.appRouter.dismiss()
+            }
+        }, onCancel: { [weak self] in
+            guard let self else { return }
+
+            Task {
+                self.appRouter.dismiss()
+            }
+        })
     }
 }

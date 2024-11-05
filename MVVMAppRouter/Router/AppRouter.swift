@@ -11,7 +11,11 @@ import SwiftUI
 
 protocol AppRouter {
     func start()
-    func showNewToDoForm()
+    func showNewToDoForm(
+        onNewToDo: @escaping (ToDoItem) -> Void,
+        onCancel: @escaping () -> Void
+    )
+    func dismiss()
 }
 
 class AppRouterImpl: AppRouter {
@@ -34,10 +38,19 @@ class AppRouterImpl: AppRouter {
         window.makeKeyAndVisible()
     }
 
-    func showNewToDoForm() {
-        let newToDoMainView = NewToDoMainView()
+    func showNewToDoForm(
+        onNewToDo: @escaping (ToDoItem) -> Void,
+        onCancel: @escaping () -> Void
+    ) {
+        let newToDoMainView = NewToDoMainView(onNewToDo: onNewToDo, onCancel: onCancel)
         let newToDoHostingController = UIHostingController(rootView: newToDoMainView)
 
         topNavigationController.present(newToDoHostingController, animated: true)
+    }
+
+    func dismiss() {
+        Task { @MainActor in
+            topNavigationController.dismiss(animated: true)
+        }
     }
 }

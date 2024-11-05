@@ -11,30 +11,45 @@ struct NewToDoMainView: View {
     @State private var titleInput: String = ""
     @State private var descriptionInput: String = ""
 
+    private let onNewToDo: (ToDoItem) -> Void
+    private let onCancel: () -> Void
+
+    init(
+        onNewToDo: @escaping (ToDoItem) -> Void,
+        onCancel: @escaping () -> Void
+    ) {
+        self.onNewToDo = onNewToDo
+        self.onCancel = onCancel
+    }
+
     var body: some View {
         NavigationView {
             VStack {
                 TextField("Title", text: $titleInput)
-                    .textFieldStyle(.roundedBorder)
+                    .textFieldStyle(.plain)
+                    .font(.title)
 
                 TextField("Description", text: $descriptionInput)
-                    .textFieldStyle(.roundedBorder)
+                    .textFieldStyle(.plain)
+                    .font(.title2)
+
+                Spacer()
             }
             .padding()
             .navigationTitle("New todo")
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
-                    Button(action: {
-                        print("Cancel tapped")
-                    }) {
+                    Button {
+                        onCancel()
+                    } label: {
                         Text("Cancel")
                     }
                 }
                 ToolbarItem(placement: .confirmationAction) {
-                    Button(action: {
-                        print("Next tapped")
-                    }) {
-                        Text("Next")
+                    Button {
+                        onNewToDo(ToDoItem(name: titleInput, completed: false))
+                    } label: {
+                        Text("Add")
                     }
                 }
             }
@@ -43,5 +58,5 @@ struct NewToDoMainView: View {
 }
 
 #Preview {
-    NewToDoMainView()
+    NewToDoMainView(onNewToDo: { _ in }, onCancel: {})
 }

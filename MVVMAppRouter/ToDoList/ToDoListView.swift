@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct ToDoListView: View {
-    @State private var viewModel: ToDoListViewModel
+    @StateObject private var viewModel: ToDoListViewModel
     @State private var textInput: String = ""
 
     init(viewModel: ToDoListViewModel) {
-        self.viewModel = viewModel
+        _viewModel = StateObject(wrappedValue: viewModel)
     }
 
     var body: some View {
@@ -24,9 +24,9 @@ struct ToDoListView: View {
 
                 case .empty:
                     ContentUnavailableView(
-                        "No item",
-                        systemImage: "text.badge.xmark",
-                        description: Text("Tap the Add button to create an item")
+                        imageName: "text.badge.xmark",
+                        title: "No item",
+                        message: "Tap the Add button to create an item"
                     )
 
                 case .filled(let filledData):
@@ -36,11 +36,11 @@ struct ToDoListView: View {
         }
         .navigationTitle("Todos")
         .toolbar {
-            ToolbarItem(placement: .navigationBarTrailing) {
-                Button(action: {
+            ToolbarItem(placement: .primaryAction) {
+                Button {
                     viewModel.showNewToDoForm()
-                }) {
-                    Text("Add")
+                } label: {
+                    Text("+")
                 }
             }
         }
