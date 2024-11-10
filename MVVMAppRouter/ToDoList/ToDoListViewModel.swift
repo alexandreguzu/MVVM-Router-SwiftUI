@@ -52,7 +52,12 @@ class ToDoListViewModel: ObservableObject {
     func remove(atOffsets indexSet: IndexSet) async {
         guard case .filled(let data) = state else { return }
         for index in indexSet {
-            await repository.delete(toDoItem: data.toDoItems[index])
+            do {
+                try await repository.delete(toDoItem: data.toDoItems[index])
+            } catch {
+                // TODO: handle error
+                fatalError("Error not handled when deleting a todo item")
+            }
         }
         await fetchAllItems()
     }
@@ -68,9 +73,7 @@ class ToDoListViewModel: ObservableObject {
         }, onCancel: { [weak self] in
             guard let self else { return }
 
-            Task {
-                self.appRouter.dismiss()
-            }
+            self.appRouter.dismiss()
         })
     }
 }
