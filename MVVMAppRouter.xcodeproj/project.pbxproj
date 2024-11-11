@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		FAA649082C43C55600E3913E /* AppRouterMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA649072C43C55600E3913E /* AppRouterMock.swift */; };
 		FAA6490B2C43D88000E3913E /* ContentUnavailableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA6490A2C43D88000E3913E /* ContentUnavailableView.swift */; };
-		FAB155DD2CE154110020CA32 /* iOSCheckboxToggleStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB155DC2CE154110020CA32 /* iOSCheckboxToggleStyle.swift */; };
 		FAD5B0F82C314F8900E5E0F2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD5B0F72C314F8900E5E0F2 /* AppDelegate.swift */; };
 		FAD5B0FA2C314F8900E5E0F2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD5B0F92C314F8900E5E0F2 /* SceneDelegate.swift */; };
 		FAD5B1012C314F8A00E5E0F2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAD5B1002C314F8A00E5E0F2 /* Assets.xcassets */; };
@@ -46,7 +45,6 @@
 /* Begin PBXFileReference section */
 		FAA649072C43C55600E3913E /* AppRouterMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppRouterMock.swift; sourceTree = "<group>"; };
 		FAA6490A2C43D88000E3913E /* ContentUnavailableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentUnavailableView.swift; sourceTree = "<group>"; };
-		FAB155DC2CE154110020CA32 /* iOSCheckboxToggleStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSCheckboxToggleStyle.swift; sourceTree = "<group>"; };
 		FAD5B0F42C314F8900E5E0F2 /* MVVMAppRouter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MVVMAppRouter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAD5B0F72C314F8900E5E0F2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FAD5B0F92C314F8900E5E0F2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -92,14 +90,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		FAB155DB2CE1540A0020CA32 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				FAB155DC2CE154110020CA32 /* iOSCheckboxToggleStyle.swift */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
 		FAD5B0EB2C314F8900E5E0F2 = {
 			isa = PBXGroup;
 			children = (
@@ -123,7 +113,6 @@
 		FAD5B0F62C314F8900E5E0F2 /* MVVMAppRouter */ = {
 			isa = PBXGroup;
 			children = (
-				FAB155DB2CE1540A0020CA32 /* Views */,
 				FAD5B1352C3151FD00E5E0F2 /* Router */,
 				FAD5B1342C3151F300E5E0F2 /* Repository */,
 				FAD5B1332C3151E600E5E0F2 /* ToDoList */,
@@ -329,7 +318,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FAB155DD2CE154110020CA32 /* iOSCheckboxToggleStyle.swift in Sources */,
 				FAD5B0F82C314F8900E5E0F2 /* AppDelegate.swift in Sources */,
 				FAD5B1282C31505000E5E0F2 /* AppRouter.swift in Sources */,
 				FAD5B1312C3151D700E5E0F2 /* InMemoryToDoRepository.swift in Sources */,
