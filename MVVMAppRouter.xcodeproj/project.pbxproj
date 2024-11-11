@@ -22,7 +22,7 @@
 		FAD5B1302C3151D700E5E0F2 /* ToDoRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD5B12D2C3151D700E5E0F2 /* ToDoRepository.swift */; };
 		FAD5B1312C3151D700E5E0F2 /* InMemoryToDoRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD5B12E2C3151D700E5E0F2 /* InMemoryToDoRepository.swift */; };
 		FAD5B1322C3151D700E5E0F2 /* ToDoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD5B12F2C3151D700E5E0F2 /* ToDoItem.swift */; };
-		FAD5B1382C31551E00E5E0F2 /* NewToDoMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD5B1372C31551E00E5E0F2 /* NewToDoMainView.swift */; };
+		FAD5B1382C31551E00E5E0F2 /* NewToDoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD5B1372C31551E00E5E0F2 /* NewToDoView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,7 +62,7 @@
 		FAD5B12D2C3151D700E5E0F2 /* ToDoRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToDoRepository.swift; sourceTree = "<group>"; };
 		FAD5B12E2C3151D700E5E0F2 /* InMemoryToDoRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InMemoryToDoRepository.swift; sourceTree = "<group>"; };
 		FAD5B12F2C3151D700E5E0F2 /* ToDoItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToDoItem.swift; sourceTree = "<group>"; };
-		FAD5B1372C31551E00E5E0F2 /* NewToDoMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewToDoMainView.swift; sourceTree = "<group>"; };
+		FAD5B1372C31551E00E5E0F2 /* NewToDoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewToDoView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -175,7 +175,7 @@
 		FAD5B1362C31541D00E5E0F2 /* NewToDoForm */ = {
 			isa = PBXGroup;
 			children = (
-				FAD5B1372C31551E00E5E0F2 /* NewToDoMainView.swift */,
+				FAD5B1372C31551E00E5E0F2 /* NewToDoView.swift */,
 			);
 			path = NewToDoForm;
 			sourceTree = "<group>";
@@ -323,7 +323,7 @@
 				FAD5B1312C3151D700E5E0F2 /* InMemoryToDoRepository.swift in Sources */,
 				FAD5B12A2C31518100E5E0F2 /* ToDoListView.swift in Sources */,
 				FAA6490B2C43D88000E3913E /* ContentUnavailableView.swift in Sources */,
-				FAD5B1382C31551E00E5E0F2 /* NewToDoMainView.swift in Sources */,
+				FAD5B1382C31551E00E5E0F2 /* NewToDoView.swift in Sources */,
 				FAD5B0FA2C314F8900E5E0F2 /* SceneDelegate.swift in Sources */,
 				FAA649082C43C55600E3913E /* AppRouterMock.swift in Sources */,
 				FAD5B12C2C31519F00E5E0F2 /* ToDoListViewModel.swift in Sources */,

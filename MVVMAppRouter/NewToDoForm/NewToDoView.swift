@@ -1,5 +1,5 @@
 //
-//  NewToDoMainView.swift
+//  NewToDoView.swift
 //  MVVMAppRouter
 //
 //  Created by Alex on 30/06/2024.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct NewToDoMainView: View {
+struct NewToDoView: View {
     @State private var titleInput: String = ""
     @State private var descriptionInput: String = ""
 
@@ -59,5 +59,5 @@ struct NewToDoMainView: View {
 }
 
 #Preview {
-    NewToDoMainView(onNewToDo: { _ in }, onCancel: {})
+    NewToDoView(onNewToDo: { _ in }, onCancel: {})
 }

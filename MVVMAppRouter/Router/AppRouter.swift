@@ -42,7 +42,7 @@ class AppRouterImpl: AppRouter {
         onNewToDo: @escaping (ToDoItem) -> Void,
         onCancel: @escaping () -> Void
     ) {
-        let newToDoMainView = NewToDoMainView(onNewToDo: onNewToDo, onCancel: onCancel)
+        let newToDoMainView = NewToDoView(onNewToDo: onNewToDo, onCancel: onCancel)
         let newToDoHostingController = UIHostingController(rootView: newToDoMainView)
 
         topNavigationController.present(newToDoHostingController, animated: true)
