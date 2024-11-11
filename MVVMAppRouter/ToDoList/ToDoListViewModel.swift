@@ -53,7 +53,7 @@ class ToDoListViewModel: ObservableObject {
         guard case .filled(let data) = state else { return }
         for index in indexSet {
             do {
-                try await repository.delete(toDoItem: data.toDoItems[index])
+                try await repository.delete(itemId: data.toDoItems[index].id)
             } catch {
                 // TODO: handle error
                 fatalError("Error not handled when deleting a todo item")
@@ -63,17 +63,32 @@ class ToDoListViewModel: ObservableObject {
     }
 
     func showNewToDoForm() {
-        appRouter.showNewToDoForm(onNewToDo: { [weak self] toDoItem in
-            guard let self else { return }
+        appRouter.showNewToDoForm(
+            onNewToDo: { [weak self] toDoItem in
+                guard let self else { return }
 
-            Task {
-                await self.addItem(item: toDoItem)
+                Task {
+                    await self.addItem(item: toDoItem)
+                    self.appRouter.dismiss()
+                }
+            }, onCancel: { [weak self] in
+                guard let self else { return }
+
                 self.appRouter.dismiss()
             }
-        }, onCancel: { [weak self] in
-            guard let self else { return }
+        )
+    }
 
-            self.appRouter.dismiss()
-        })
+    func updateItem(id: String, isCompleted: Bool) {
+        Task {
+            do {
+                try await repository.update(itemId: id, completed: isCompleted)
+            } catch {
+                // TODO: handle error
+                fatalError("Error not handled when updating a todo item")
+            }
+
+            await fetchAllItems()
+        }
     }
 }

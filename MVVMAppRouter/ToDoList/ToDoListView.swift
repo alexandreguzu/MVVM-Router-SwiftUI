@@ -9,7 +9,6 @@ import SwiftUI
 
 struct ToDoListView: View {
     @StateObject private var viewModel: ToDoListViewModel
-    @State private var textInput: String = ""
 
     init(viewModel: ToDoListViewModel) {
         _viewModel = StateObject(wrappedValue: viewModel)
@@ -40,7 +39,7 @@ struct ToDoListView: View {
                 Button {
                     viewModel.showNewToDoForm()
                 } label: {
-                    Text("+")
+                    Text("Add")
                 }
             }
         }
@@ -54,7 +53,12 @@ struct ToDoListView: View {
     func itemList(items: [ToDoItem]) -> some View {
         List {
             ForEach(items, id: \.id) { item in
-                Text(item.name)
+                HStack {
+                    CheckMark(isChecked: item.completed) { isChecked in
+                        viewModel.updateItem(id: item.id, isCompleted: isChecked)
+                    }
+                    Text(item.name)
+                }
             }
             .onDelete(perform: delete)
         }
@@ -63,6 +67,24 @@ struct ToDoListView: View {
     func delete(at offsets: IndexSet) {
         Task {
             await viewModel.remove(atOffsets: offsets)
+        }
+    }
+}
+
+struct CheckMark: View {
+    private let isChecked: Bool
+    private let action: (Bool) -> Void
+
+    init(isChecked: Bool, action: @escaping (Bool) -> Void) {
+        self.isChecked = isChecked
+        self.action = action
+    }
+
+    var body: some View {
+        Button(action: {
+            self.action(!isChecked)
+        }) {
+            Image(systemName: isChecked ? "checkmark.square" : "square")
         }
     }
 }

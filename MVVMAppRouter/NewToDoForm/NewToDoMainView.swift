@@ -27,16 +27,17 @@ struct NewToDoMainView: View {
             VStack {
                 TextField("Title", text: $titleInput)
                     .textFieldStyle(.plain)
-                    .font(.title)
+                    .font(.title2)
 
                 TextField("Description", text: $descriptionInput)
                     .textFieldStyle(.plain)
-                    .font(.title2)
+                    .font(.title3)
 
                 Spacer()
             }
             .padding()
             .navigationTitle("New todo")
+            .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     Button {
