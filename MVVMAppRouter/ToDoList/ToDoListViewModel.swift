@@ -7,6 +7,18 @@
 
 import Foundation
 
+protocol Useless {
+    @MainActor
+    func uselessMethod(uselessCompletion: @escaping () -> Void)
+}
+
+class UselessClass: Useless {
+    func uselessMethod(uselessCompletion: @escaping () -> Void) {
+        print("I'm useless")
+        uselessCompletion()
+    }
+}
+
 class ToDoListViewModel: ObservableObject {
 
     enum UIState: Equatable {
@@ -20,6 +32,12 @@ class ToDoListViewModel: ObservableObject {
         }
     }
 
+    private let uselessCompletion: () -> Void = {
+        print("I'm a useless completion")
+    }
+
+    private let uselessClass: Useless = UselessClass()
+
     @Published private(set) var state: UIState = .loading
 
     private let repository: ToDoRepository
@@ -32,6 +50,8 @@ class ToDoListViewModel: ObservableObject {
     }
 
     func fetchAllItems() async {
+        await uselessClass.uselessMethod(uselessCompletion: uselessCompletion)
+
         let toDoItems = await repository.fetchAll()
 
         Task { @MainActor in
